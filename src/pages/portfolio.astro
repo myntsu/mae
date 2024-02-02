@@ -1,20 +1,122 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
+  <head>
+    <BaseHead
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+    />
+    <style>
+      .thumbnail {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        object-position: top center;
+      }
+      .featured {
+        width: 100%;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    </style></head
+  >
 
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+      <h1>Featured</h1>
+      <img
+        id="featuredImg"
+        class="featured"
+        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+        alt=""
+      />
+
+      <h2>Illustrations</h2>
+      <div class="grid">
+        <!-- Repeat this for each thumbnail image -->
+        <img
+          class="thumbnail"
+          src="https://pbs.twimg.com/media/Ef_m8AMUcAMx1O-?format=jpg&name=small"
+          alt=""
+        />
+        <img
+          src="https://pbs.twimg.com/media/FDBdeTbaQAA6osL?format=jpg&name=medium"
+          alt=""
+          class="thumbnail"
+        /><img
+          src="https://pbs.twimg.com/media/GEWvqZjaYAEc5j3?format=jpg&name=medium"
+          alt=""
+          class="thumbnail"
+        /><img
+          src="https://pbs.twimg.com/media/FKWGRBEaAAEvOiJ?format=jpg&name=medium"
+          alt=""
+          class="thumbnail"
+        /><img
+          src="https://pbs.twimg.com/media/Fl3CnLqakAAx48P?format=jpg&name=medium"
+          alt=""
+          class="thumbnail"
+        /><img
+          src=""
+          alt=""
+          class="thumbnail"
+        /><img
+          src=""
+          alt=""
+          class="thumbnail"
+        /><img
+          src=""
+          alt=""
+          class="thumbnail"
+        />
+        <!-- ... -->
+      </div>
+    </main>
+    <Footer />
+
+    <!-- The Dialog -->
+    <dialog id="myModal">
+      <img
+        data-modal-image
+        id="img01"
+      />
+    </dialog>
+
+    <script>
+      // Get the dialog
+      const dialog = document.querySelector("dialog");
+
+      // Get all images and add event listeners
+      const images = document.querySelectorAll("img");
+      images.forEach(function (img) {
+        img.addEventListener("click", function (event) {
+          event.stopPropagation(); // Stop the event from bubbling up
+          dialog.showModal();
+          document.querySelector("[data-modal-image]").src = this.src.replace(
+            "name=small",
+            "name=large"
+          );
+        });
+      });
+
+      // Add event listener for clicking anywhere to close the dialog
+      window.addEventListener("click", function () {
+        if (dialog.open) {
+          dialog.close();
+        }
+      });
+    </script>
+  </body>
 </html>
