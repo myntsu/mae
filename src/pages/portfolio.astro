@@ -16,8 +16,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       .thumbnail {
         --shadow-size: 2px;
         --shadow-color: hsl(0 0% 8% / .3);
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         object-fit: contain;
         object-position: top center;
         border: 1px solid hsl(0 0% 0% / .1);
@@ -26,8 +26,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       }
 
       .thumbnail:is(:hover) {
-        --shadow-size: 4px;
-        --shadow-color: hsl(200 70% 70% / .8);
+        --shadow-size: 6px;
+        --shadow-color: hsl(220 90% 40% / .2);
+        opacity: .8;
         scale: 1.01;
         transition: all 100ms linear;
       }
@@ -39,7 +40,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         justify-items: center;
         gap: 1rem;
       }
