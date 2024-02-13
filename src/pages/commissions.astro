@@ -3,6 +3,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Checkmark from "../components/Checkmark.astro";
+import Cross from  "../components/Cross.astro";
 ---
 
 <!doctype html>
@@ -52,23 +54,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         unprofessional! (✿◡‿◡)
       </p>
       <ul class="general-info-list">
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m10.6 13.4l-2.15-2.15q-.275-.275-.7-.275t-.7.275q-.275.275-.275.7t.275.7L9.9 15.5q.3.3.7.3t.7-.3l5.65-5.65q.275-.275.275-.7t-.275-.7q-.275-.275-.7-.275t-.7.275zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21z"/></svg>An <b>extra character</b> costs 75% of the original price</li>
-        <li>☑️ Can provide WIPs or sketches <small>if requested</small></li>
-        <li>☑️ Turnaround from 1 week to 3 months</li>
+        <li><Checkmark/> An <b>extra character</b> costs 75% of the original price</li>
+        <li><Checkmark/> Can provide WIPs or sketches <small>if requested</small></li>
+        <li><Checkmark/> Turnaround from 1 week to 3 months</li>
         <li>
-          ☑️ Commissions are <b>non-refundable</b>, unless the turnaround date
+          <Checkmark/> Commissions are <b>non-refundable</b>, unless the turnaround date
           has passed or the client has an emergency
         </li>
         <li>
-          ☑️ If you don't want your commission to be posted, streamed or shared,
+          <Checkmark/> If you don't want your commission to be posted, streamed or shared,
           please notify me beforehand
         </li>
         <li>
-          ❎ Do not request a deadline and put pressure on me to work, I like to
+          <Cross/> Do not request a deadline and put pressure on me to work, I like to
           provide the highest quality on my work
         </li>
       </ul>
-      <h2>✔️ DOs</h2>
+      <h2><Checkmark class="bigger"/> DOs</h2>
       <ul class="dos-list">
         <li>OCs</li>
         <li>Fanart</li>
@@ -88,7 +90,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
               >[Ref]</a
             ></span></li>
       </ul>
-      <h2>✖️ DONTs</h2>
+      <h2><Cross class="bigger"/> DONTs</h2>
       <ul>
         <li>Elderly</li>
         <li>NSFW</li>
@@ -108,14 +110,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
     .general-info-list li {
       list-style: none;
-    }
-
-    .general-info-list svg {
-      position: relative;
-      top: 5px;
-      width: 24px;
-      height: 24px;
-      color: hsl(220 100% 60%);
     }
 
     .reference a {
