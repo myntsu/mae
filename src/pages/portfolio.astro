@@ -15,20 +15,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <style>
       .thumbnail {
         --shadow-size: 2px;
-        --shadow-color: hsl(0 0% 8% / .3);
+        --shadow-color: hsl(0 0% 8% / 0.3);
         width: 200px;
         height: 200px;
         object-fit: contain;
         object-position: top center;
-        border: 1px solid hsl(0 0% 0% / .1);
+        border: 1px solid hsl(0 0% 0% / 0.1);
         cursor: pointer;
-        box-shadow: var(--shadow-size) var(--shadow-size) 5px var(--shadow-color);
+        box-shadow: var(--shadow-size) var(--shadow-size) 5px
+          var(--shadow-color);
       }
 
       .thumbnail:is(:hover) {
         --shadow-size: 6px;
-        --shadow-color: hsl(220 90% 40% / .2);
-        opacity: .8;
+        --shadow-color: hsl(220 90% 40% / 0.2);
+        opacity: 0.8;
         scale: 1.01;
         transition: all 100ms linear;
       }
@@ -50,11 +51,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       dialog {
         border: none;
       }
-      dialog:focus-visible{
+      dialog:focus-visible {
         border: none;
       }
       dialog::backdrop {
-        background: hsl(0 0% 8% / .7);
+        background: hsl(0 0% 8% / 0.7);
       }
     </style></head
   >
@@ -73,47 +74,47 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       <h2>Illustrations</h2>
       <div class="grid">
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
         <img
-        src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
+          src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
           class="thumbnail"
         />
@@ -129,45 +130,58 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     </dialog>
 
     <script lang="js">
-const dialog = document.querySelector("dialog");
-const modalImage = document.querySelector("[data-modal-image]");
+      function setup() {
+        const dialog = document.querySelector("dialog");
+        const modalImage = document.querySelector("[data-modal-image]");
 
-// Preload large images
-const images = document.querySelectorAll("img");
-images.forEach(function (img) {
-  const largeImage = new Image();
-  largeImage.src = img.src.replace("name=small", "name=large");
-});
+        // Preload large images
+        const images = document.querySelectorAll("img");
+        images.forEach(function (img) {
+          const largeImage = new Image();
+          largeImage.src = img.src.replace("name=small", "name=large");
+        });
 
-// Open modal on image click
-images.forEach(function (img) {
-  img.addEventListener("click", function (event) {
-    event.stopPropagation();
-    dialog.showModal();
-    modalImage.src = this.src.replace("name=small", "name=large");
-    // Disable pointer events on other images
-    images.forEach(function (otherImg) {
-      if (otherImg !== img) {
-        otherImg.style.pointerEvents = "none";
+        // Open modal on image click
+        images.forEach(function (img) {
+          img.addEventListener("click", function (event) {
+            event.stopPropagation();
+            dialog.showModal();
+            modalImage.src = this.src.replace("name=small", "name=large");
+            // Disable pointer events on other images
+            images.forEach(function (otherImg) {
+              if (otherImg !== img) {
+                otherImg.style.pointerEvents = "none";
+              }
+            });
+          });
+        });
+
+        // Close modal on window click or touch
+        ["click", "touchstart"].forEach(function (evt) {
+          window.addEventListener(evt, function (event) {
+            if (dialog.open) {
+              dialog.close();
+              // Re-enable pointer events on all images
+              images.forEach(function (img) {
+                img.style.pointerEvents = "";
+              });
+            }
+            event.stopPropagation(); // Stop event propagation
+          });
+        });
       }
-    });
-  });
-});
 
-// Close modal on window click or touch
-["click", "touchstart"].forEach(function (evt) {
-  window.addEventListener(evt, function () {
-    if (dialog.open) {
-      dialog.close();
-      // Re-enable pointer events on all images
-      images.forEach(function (img) {
-        img.style.pointerEvents = "";
-      });
-    }
-  });
-});
+      // Run setup on initial page load
+      setup();
 
-
+      document.addEventListener(
+        "astro:page-load",
+        () => {
+          // This only runs once.
+          setupStuff();
+        },
+        { once: true }
+      );
     </script>
   </body>
 </html>
