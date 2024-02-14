@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Checkmark from "../components/Checkmark.astro";
-import Cross from  "../components/Cross.astro";
+import Cross from "../components/Cross.astro";
 ---
 
 <!doctype html>
@@ -41,7 +41,8 @@ import Cross from  "../components/Cross.astro";
                 fill="#1F264F"
                 d="M216.952 72.128a89.928 89.928 0 0 0-5.818-1.49a109.904 109.904 0 0 0-6.177-1.174c-7.408-1.199-15.5-1.765-24.19-1.765h-73.309a11.57 11.57 0 0 0-5.053 1.149a11.683 11.683 0 0 0-6.51 8.74l-15.582 98.798l-.45 2.88c1.025-6.501 6.585-11.296 13.17-11.296h27.444c53.898 0 96.1-21.892 108.428-85.221c.367-1.873.675-3.688.958-5.477c-3.122-1.648-6.501-3.072-10.14-4.279a83.26 83.26 0 0 0-2.77-.865"
               ></path></svg
-            > PayPal</span>
+            > PayPal</span
+          >
         </li>
         <li><b>Personal use</b> - fee will be added for based on complexity</li>
         <li>
@@ -54,23 +55,27 @@ import Cross from  "../components/Cross.astro";
         unprofessional! (✿◡‿◡)
       </p>
       <ul class="general-info-list">
-        <li><Checkmark/> An <b>extra character</b> costs 75% of the original price</li>
-        <li><Checkmark/> Can provide WIPs or sketches <small>if requested</small></li>
-        <li><Checkmark/> Turnaround from 1 week to 3 months</li>
         <li>
-          <Checkmark/> Commissions are <b>non-refundable</b>, unless the turnaround date
-          has passed or the client has an emergency
+          <Checkmark /> An <b>extra character</b> costs 75% of the original price
         </li>
         <li>
-          <Checkmark/> If you don't want your commission to be posted, streamed or shared,
-          please notify me beforehand
+          <Checkmark /> Can provide WIPs or sketches <small>if requested</small>
+        </li>
+        <li><Checkmark /> Turnaround from 1 week to 3 months</li>
+        <li>
+          <Checkmark /> Commissions are <b>non-refundable</b>, unless the
+          turnaround date has passed or the client has an emergency
         </li>
         <li>
-          <Cross/> Do not request a deadline and put pressure on me to work, I like to
-          provide the highest quality on my work
+          <Checkmark /> If you don't want your commission to be posted, streamed
+          or shared, please notify me beforehand
+        </li>
+        <li>
+          <Cross /> Do not request a deadline and put pressure on me to work, I like
+          to provide the highest quality on my work
         </li>
       </ul>
-      <h2><Checkmark class="bigger"/> DOs</h2>
+      <h2><Checkmark class="bigger" /> DOs</h2>
       <ul class="dos-list">
         <li>OCs</li>
         <li>Fanart</li>
@@ -81,16 +86,19 @@ import Cross from  "../components/Cross.astro";
               href="https://en.wikipedia.org/wiki/Moe_anthropomorphism#Animals"
               target="_blank"
               >[Ref]</a
-            ></span>
+            ></span
+          >
         </li>
-        <li>Anthros <span class="reference"
+        <li>
+          Anthros <span class="reference"
             ><a
               href="https://en.wikifur.com/wiki/Anthropomorphic"
               target="_blank"
               >[Ref]</a
-            ></span></li>
+            ></span>
+        </li>
       </ul>
-      <h2><Cross class="bigger"/> DONTs</h2>
+      <h2><Cross class="bigger" /> DONTs</h2>
       <ul>
         <li>Elderly</li>
         <li>NSFW</li>
@@ -98,29 +106,40 @@ import Cross from  "../components/Cross.astro";
         <li>Anything I might feel uncomfortable drawing</li>
         <li>Written out description of OCs (depends)</li>
       </ul>
+
+      <div class="agreement-section">
+        <a href="/prices">I agree to be part of mae's findom</a>
+      </div>
     </main>
     <Footer />
-  </body><style>
-    .text-with-svg svg {
-      position: relative;
-      top: 5px;
-      width: 1.2rem;
-      height: 1.2rem;
-    }
+    <style>
+      .text-with-svg svg {
+        position: relative;
+        top: 5px;
+        width: 1.2rem;
+        height: 1.2rem;
+      }
 
-    .general-info-list li {
-      list-style: none;
-    }
+      .general-info-list li {
+        list-style: none;
+      }
 
-    .reference a {
-      font-size: 0.9rem;
-      text-decoration: none;
-	  color: hsl(220 100% 70%);
-	  font-weight: 900;
-    }
+      .reference a {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: hsl(220 100% 70%);
+        font-weight: 900;
+      }
 
-	.reference a:hover {
-		opacity: .75;
-	}
-  </style>
+      .reference a:hover {
+        opacity: 0.75;
+      }
+
+      .agreement-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </body>
 </html>

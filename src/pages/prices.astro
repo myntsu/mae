@@ -1,0 +1,54 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Checkmark from "../components/Checkmark.astro";
+import Cross from "../components/Cross.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+        <h1>Here goes the prices</h1>
+    </main>
+    <Footer />
+    <style>
+      .text-with-svg svg {
+        position: relative;
+        top: 5px;
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      .general-info-list li {
+        list-style: none;
+      }
+
+      .reference a {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: hsl(220 100% 70%);
+        font-weight: 900;
+      }
+
+      .reference a:hover {
+        opacity: 0.75;
+      }
+
+      .agreement-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </body>
+</html>
