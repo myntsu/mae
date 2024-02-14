@@ -38,6 +38,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       h2 {
         margin-block-start: 2rem;
       }
+      img {
+        user-select: none;
+      }
       .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -45,6 +48,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         gap: 1rem;
       }
       dialog {
+        border: none;
+      }
+      dialog:focus-visible{
         border: none;
       }
       dialog::backdrop {
@@ -66,7 +72,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
       <h2>Illustrations</h2>
       <div class="grid">
-        <!-- Repeat this for each thumbnail image -->
         <img
         src="https://pbs.twimg.com/media/GDrcxR3XUAAq41p?format=jpg&name=large"
           alt=""
@@ -112,13 +117,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
           alt=""
           class="thumbnail"
         />
-
-        <!-- ... -->
       </div>
     </main>
     <Footer />
-
-    <!-- backing up -->
 
     <dialog id="myModal">
       <img
@@ -128,28 +129,45 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     </dialog>
 
     <script lang="js">
-      // Get the dialog
-      const dialog = document.querySelector("dialog");
+const dialog = document.querySelector("dialog");
+const modalImage = document.querySelector("[data-modal-image]");
 
-      // Get all images and add event listeners
-      const images = document.querySelectorAll("img");
+// Preload large images
+const images = document.querySelectorAll("img");
+images.forEach(function (img) {
+  const largeImage = new Image();
+  largeImage.src = img.src.replace("name=small", "name=large");
+});
+
+// Open modal on image click
+images.forEach(function (img) {
+  img.addEventListener("click", function (event) {
+    event.stopPropagation();
+    dialog.showModal();
+    modalImage.src = this.src.replace("name=small", "name=large");
+    // Disable pointer events on other images
+    images.forEach(function (otherImg) {
+      if (otherImg !== img) {
+        otherImg.style.pointerEvents = "none";
+      }
+    });
+  });
+});
+
+// Close modal on window click or touch
+["click", "touchstart"].forEach(function (evt) {
+  window.addEventListener(evt, function () {
+    if (dialog.open) {
+      dialog.close();
+      // Re-enable pointer events on all images
       images.forEach(function (img) {
-        img.addEventListener("click", function (event) {
-          event.stopPropagation(); // Stop the event from bubbling up
-          dialog.showModal();
-          document.querySelector("[data-modal-image]").src = this.src.replace(
-            "name=small",
-            "name=large"
-          );
-        });
+        img.style.pointerEvents = "";
       });
+    }
+  });
+});
 
-      // Add event listener for clicking anywhere to close the dialog
-      window.addEventListener("click", function () {
-        if (dialog.open) {
-          dialog.close();
-        }
-      });
+
     </script>
   </body>
 </html>
